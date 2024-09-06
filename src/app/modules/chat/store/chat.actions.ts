@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store'
-import { ChannelData } from '../models/channel.model'
+import { AddChannelData, AddChannelDialogData, ChannelData } from '../models/channel.model'
 
 enum ChatActions {
     loadChannelList = 'LOAD_CHANNEL_LIST',
@@ -12,3 +12,4 @@ enum ChatActions {
 
 export const loadChannelListAction = createAction(ChatActions.loadChannelList)
 export const saveChannelListAction = createAction(ChatActions.saveChannelList, props<{ data: ChannelData[] }>())
+export const addChannel = createAction(ChatActions.addChannel, props<{ data: AddChannelDialogData }>())

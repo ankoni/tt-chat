@@ -71,7 +71,31 @@
       "is_online": true
     }
   ],
-  "channels": [],
+  "channels": [
+    {
+      "id": "1",
+      "name": "testtt"
+    },
+    {
+      "name": "hello",
+      "id": "XHqsqJ-"
+    },
+    {
+      "id": "wz1Kyjl",
+      "name": "channel test"
+    }
+  ],
   "messages": [],
-  "user_channels": []
+  "user_channels": [
+    {
+      "user_id": "eSVtxN-",
+      "channel_id": "XHqsqJ-",
+      "id": 1
+    },
+    {
+      "channel_id": "wz1Kyjl",
+      "user_id": "eSVtxN-",
+      "id": 2
+    }
+  ]
 }

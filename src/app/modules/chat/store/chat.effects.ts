@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core'
 import { Actions, createEffect, ofType } from '@ngrx/effects'
 import { Action, Store } from '@ngrx/store'
-import { exhaustMap, map, withLatestFrom } from 'rxjs'
+import { exhaustMap, map, take, withLatestFrom } from 'rxjs'
 import { AuthState } from '../../auth/models/login.model'
 import { authIdSelector } from '../../auth/store/auth.selectors'
-import { ChannelData } from '../models/channel.model'
+import { AddChannelData, AddChannelDialogData, ChannelData } from '../models/channel.model'
 import { ChatApiService } from '../services/chat-api.service'
-import { loadChannelListAction, saveChannelListAction } from './chat.actions'
+import { addChannel, loadChannelListAction, saveChannelListAction } from './chat.actions'
 
 @Injectable()
 export class ChatEffects {
@@ -23,6 +23,27 @@ export class ChatEffects {
                         map((channelData: ChannelData[]) =>
                             saveChannelListAction({ data: channelData })
                         )
+                    )
+            })
+        )
+    )
+
+    addChannel$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(addChannel),
+            withLatestFrom(this.store.select(authIdSelector)),
+            exhaustMap(([{ data }, userId]: [{ data: AddChannelDialogData }, string | undefined]) => {
+                if (!userId) {
+                    throw new Error('User id is empty')
+                }
+
+                const fullData: AddChannelData = {
+                    name: data.name,
+                    user_id: userId,
+                }
+                return this.chatApiService.addChannel(fullData)
+                    .pipe(
+                        map(() => loadChannelListAction())
                     )
             })
         )

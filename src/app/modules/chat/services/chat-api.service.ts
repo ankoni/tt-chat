@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { forkJoin, map, Observable, switchMap } from 'rxjs'
-import { ChannelData, ChannelUserRel } from '../models/channel.model'
+import { AddChannelData, ChannelData, ChannelUserRel } from '../models/channel.model'
 
 @Injectable({ providedIn: 'root' })
 export class ChatApiService {
@@ -26,7 +26,12 @@ export class ChatApiService {
             .pipe(map(data => data.map((it: ChannelUserRel) => it.channel_id)))
     }
 
-    getChannel(channelId: string): Observable<ChannelData> {
-        return this.http.get<ChannelData>(`/api/channels/${channelId}`)
+    addChannel({ name, user_id }: AddChannelData): Observable<void> {
+        return this.http.post<ChannelData>('/api/channels', { name })
+            .pipe(
+                switchMap((addedChannel: ChannelData) =>
+                    this.http.post<void>('api/user_channels', { channel_id: addedChannel.id, user_id })
+                )
+            )
     }
 }

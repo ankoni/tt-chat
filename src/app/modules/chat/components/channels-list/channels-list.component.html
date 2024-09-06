@@ -2,3 +2,4 @@
 @for (channel of (channelList$ | async); track channel.id) {
     <div> {{ channel.name}} </div>
 }
+<button mat-button (click)="addChannel()">Add channel</button>
