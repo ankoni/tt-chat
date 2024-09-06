@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
+import { Observable } from 'rxjs'
+import { UserData } from '../models/user.model'
 
 @Injectable({
     providedIn: 'root'
@@ -11,8 +13,11 @@ export class UserApiService {
     ) {
     }
 
-    updateUserOnline(userId: string): void {
-        // this.store.select(getUserId)
-        // this.http.post('/api/users/userId', { is_online: true })
+    getUserDataRequest(userId: string): Observable<UserData> {
+        return this.http.get<UserData>(`/api/users/${userId}`)
+    }
+
+    updateOnlineStateRequest(userId: string, isOnline: boolean): Observable<UserData> {
+        return this.http.patch<UserData>(`/api/users/${userId}`, { is_online: isOnline })
     }
 }

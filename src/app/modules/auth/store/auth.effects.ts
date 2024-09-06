@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core'
 import { Router } from '@angular/router'
 import { Actions, createEffect, ofType } from '@ngrx/effects'
 import { catchError, exhaustMap, map, of, tap } from 'rxjs'
+import { LocalStorageKeyItem, LocalStorageService } from '../../../core/services/local-storage.service'
 import { AuthError, LoginFormData, TokenData } from '../models/login.model'
 import { AuthApiService } from '../services/auth-api.service'
 import { authFailure, authSuccess, loginAction } from './auth.actions'
@@ -15,9 +16,12 @@ export class AuthEffects {
                 exhaustMap(({ data }: { data: LoginFormData }) =>
                     this.loginService.loginRequest(data)
                         .pipe(
-                            map((tokenData: TokenData) => {
+                            tap((tokenData: TokenData) => {
+                                this.localStorageService.setItem(LocalStorageKeyItem.auth, tokenData)
+                            }),
+                            map((tokenData: TokenData) => authSuccess({ token: tokenData })),
+                            tap(() => {
                                 this.router.navigate(['/'])
-                                return authSuccess({ token: tokenData })
                             }),
                             catchError((error: unknown) => of(authFailure({ error: error as AuthError })))
                         )
@@ -29,6 +33,7 @@ export class AuthEffects {
         private actions$: Actions,
         private loginService: AuthApiService,
         private router: Router,
+        private localStorageService: LocalStorageService,
     ) {
     }
 }

@@ -1,4 +1,4 @@
-import { Component, DestroyRef } from '@angular/core'
+import { ChangeDetectionStrategy, Component, DestroyRef } from '@angular/core'
 import { AsyncPipe } from '@angular/common'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { MatButton } from '@angular/material/button'
@@ -25,7 +25,8 @@ import { authErrorSelector } from '../../store/auth.selectors'
     ],
     providers: [LoginService],
     templateUrl: './login-form.component.html',
-    styleUrl: './login-form.component.scss'
+    styleUrl: './login-form.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginFormComponent {
     authError$: Observable<string | undefined> = this.authStore.select(authErrorSelector)

@@ -64,9 +64,11 @@
       "is_online": true
     },
     {
+      "id": "eSVtxN-",
       "email": "test@mail.ru",
+      "username": "test",
       "password": "$2a$10$oLjQ7V8ZlZU1V3NHY69AlOwwUPtjxogUvjNYWH3854MsFIXPh3y9.",
-      "id": "eSVtxN-"
+      "is_online": true
     }
   ],
   "channels": [],

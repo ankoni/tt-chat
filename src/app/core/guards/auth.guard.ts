@@ -1,18 +1,31 @@
 import { inject } from '@angular/core'
-import { CanMatchFn, RedirectCommand, Router } from '@angular/router'
+import {
+    ActivatedRouteSnapshot,
+    CanActivate,
+    CanActivateFn,
+    CanMatchFn,
+    RedirectCommand,
+    Route,
+    Router, RouterStateSnapshot,
+    UrlSegment
+} from '@angular/router'
 import { Store } from '@ngrx/store'
 import { map, take } from 'rxjs'
 import { authTokenSelector } from '../../modules/auth/store/auth.selectors'
 
-export const authGuard: CanMatchFn = () => {
+export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
     const store = inject(Store)
     const router = inject(Router);
+
     return store.select(authTokenSelector)
         .pipe(
             take(1),
             map((token: string | undefined) => {
-                if (!token) {
+                const isLoginPage: boolean = state.url.includes('login')
+                if (!token && !isLoginPage) {
                     return new RedirectCommand(router.parseUrl('/login'))
+                } else if (isLoginPage && token) {
+                    return new RedirectCommand(router.parseUrl('/'))
                 }
                 return true
             })

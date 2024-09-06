@@ -8,6 +8,7 @@ import {AuthEffects} from './modules/auth/store/auth.effects'
 import {authReducer} from './modules/auth/store/auth.reducer'
 import {provideHttpClient} from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'
+import { UserEffects } from './modules/user/store/user.effects'
 import { userReducer } from './modules/user/store/user.reducer'
 
 export const appConfig: ApplicationConfig = {
@@ -16,6 +17,6 @@ export const appConfig: ApplicationConfig = {
         provideHttpClient(),
         provideRouter(routes),
         provideStore({ auth: authReducer, user: userReducer }),
-        provideEffects([AuthEffects]), provideAnimationsAsync(),
+        provideEffects([AuthEffects, UserEffects]), provideAnimationsAsync(),
     ]
 }
