@@ -4,6 +4,9 @@ import { Store } from '@ngrx/store'
 import { map, Observable } from 'rxjs'
 import { MainHeaderComponent } from '../../components/main-header/main-header.component'
 import { LoginService } from '../../modules/auth/services/login.service'
+import { ChannelsListComponent } from '../../modules/chat/components/channels-list/channels-list.component'
+import { ChatApiService } from '../../modules/chat/services/chat-api.service'
+import { ChatDataService } from '../../modules/chat/services/chat-data.service'
 import { UserData } from '../../modules/user/models/user.model'
 import { UserDataService } from '../../modules/user/services/user-data.service'
 import { getCurrentUser } from '../../modules/user/store/user.selectors'
@@ -13,9 +16,12 @@ import { getCurrentUser } from '../../modules/user/store/user.selectors'
     standalone: true,
     imports: [
         MainHeaderComponent,
-        AsyncPipe
+        AsyncPipe,
+        ChannelsListComponent
     ],
-    providers: [],
+    providers: [
+        ChatDataService
+    ],
     templateUrl: './main.component.html',
     styleUrl: './main.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush

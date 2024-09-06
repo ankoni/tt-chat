@@ -1,1 +1,4 @@
-<p>channels-list works!</p>
+<h5>Channels</h5>
+@for (channel of (channelList$ | async); track channel.id) {
+    <div> {{ channel.name}} </div>
+}
