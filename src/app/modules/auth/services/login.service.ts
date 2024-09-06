@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { AuthState, LoginFormData } from '../models/login.model'
-import { loginAction, resetAuthState } from '../store/auth.actions'
+import { loginAction, logoutAction, resetAuthState } from '../store/auth.actions'
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class LoginService {
 
     constructor(
@@ -17,5 +17,9 @@ export class LoginService {
 
     login(loginData: LoginFormData): void {
         this.authStore.dispatch(loginAction({ data: loginData }))
+    }
+
+    logout(): void {
+        this.authStore.dispatch(logoutAction())
     }
 }

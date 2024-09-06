@@ -1,1 +1,4 @@
-<app-main-header [username]="username$ | async"/>
+<app-main-header
+    [username]="username$ | async"
+    (logoutEmitter)="logoutHandler()"
+/>

@@ -23,7 +23,6 @@ import { authErrorSelector } from '../../store/auth.selectors'
         MatLabel,
         ReactiveFormsModule
     ],
-    providers: [LoginService],
     templateUrl: './login-form.component.html',
     styleUrl: './login-form.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush

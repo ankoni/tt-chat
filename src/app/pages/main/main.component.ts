@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { map, Observable } from 'rxjs'
 import { MainHeaderComponent } from '../../components/main-header/main-header.component'
+import { LoginService } from '../../modules/auth/services/login.service'
 import { UserData } from '../../modules/user/models/user.model'
 import { UserDataService } from '../../modules/user/services/user-data.service'
 import { getCurrentUser } from '../../modules/user/store/user.selectors'
@@ -28,10 +29,15 @@ export class MainComponent implements OnInit {
     constructor(
         private store: Store<{ user: UserData }>,
         private userDataService: UserDataService,
+        private loginService: LoginService
     ) {
     }
 
     ngOnInit(): void {
         this.userDataService.loadUserData()
+    }
+
+    logoutHandler(): void {
+        this.loginService.logout()
     }
 }

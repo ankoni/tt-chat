@@ -5,7 +5,8 @@ enum AuthActionsTypes {
     login = 'LOGIN',
     authSuccess = 'AUTH_SUCCESS',
     authFailure = 'AUTH_FAILURE',
-    resetState = 'RESET_STATE'
+    resetState = 'RESET_STATE',
+    logout = 'LOGOUT'
 }
 
 export const loginAction = createAction(AuthActionsTypes.login, props<{ data: LoginFormData }>())
@@ -16,4 +17,5 @@ export const authFailure = createAction(AuthActionsTypes.authFailure, props<{ er
 
 export const resetAuthState = createAction(AuthActionsTypes.resetState)
 
+export const logoutAction = createAction(AuthActionsTypes.logout)
 
