@@ -3,11 +3,13 @@ import { ChangeDetectionStrategy, Component, DestroyRef } from '@angular/core'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { MatButton } from '@angular/material/button'
 import { MatDialog, MatDialogRef } from '@angular/material/dialog'
+import { MatList, MatListItem, MatListSubheaderCssMatStyler } from '@angular/material/list'
+import { MatTooltip } from '@angular/material/tooltip'
 import { Store } from '@ngrx/store'
 import { Observable, of, switchMap, tap, withLatestFrom } from 'rxjs'
 import { ChatState } from '../../../channel/models/channel.model'
 import { getSelectedChannel } from '../../../channel/store/channel.selectors'
-import { UserData } from '../../../user/models/user.model'
+import { UserData, UserState } from '../../../user/models/user.model'
 import { ChannelParticipantData } from '../../models/chats-users.model'
 import { ChannelUsersService } from '../../services/channel-users.service'
 import { loadChannelUserList } from '../../store/chats-users.actions'
@@ -20,7 +22,11 @@ import { AddUserToChannelDialogComponent } from '../add-user-to-channel-dialog/a
     imports: [
         AsyncPipe,
         NgTemplateOutlet,
-        MatButton
+        MatButton,
+        MatListSubheaderCssMatStyler,
+        MatList,
+        MatListItem,
+        MatTooltip
     ],
     templateUrl: './channel-participants.component.html',
     styleUrl: './channel-participants.component.scss',
@@ -42,7 +48,7 @@ export class ChannelParticipantsComponent {
         )
 
     constructor(
-        private store: Store<{ chat: ChatState, channelParticipants: ChannelParticipantData, user: UserData }>,
+        private store: Store<{ channels: ChatState, channelParticipants: ChannelParticipantData, user: UserState }>,
         private dialog: MatDialog,
         private channelUsersService: ChannelUsersService,
         private destroyRef: DestroyRef

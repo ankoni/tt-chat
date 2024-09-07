@@ -1,4 +1,4 @@
-<h5>Users</h5>
+<div mat-subheader class="users_title">Users</div>
 <ng-container
     [ngTemplateOutlet]="(selectedChannelId$ | async) ? users : empty"
     [ngTemplateOutletContext]="{ users: channelUsers$ | async }"
@@ -7,14 +7,27 @@
 <ng-template #users let-users="users">
     <ng-container [ngTemplateOutlet]="users.length ? userList : noUser"></ng-container>
     <ng-template #userList>
-        @for (user of users; track user.id) {
-            <div>{{ user.username }}</div>
-        }
+        <mat-list>
+            @for (user of users; track user.id) {
+                <mat-list-item>
+                    <span
+                        class="users_state"
+                        [class.online]="user.is_online"
+                        [class.offline]="!user.is_online"
+                        [matTooltip]="user.is_online ? 'Online' : 'Offline'"
+                        [matTooltipPosition]="'above'"
+                    ></span>
+                    {{ user.username }}
+                </mat-list-item>
+            }
+        </mat-list>
     </ng-template>
     <ng-template #noUser>
         <p>There are no users on the channel. Add users to chat</p>
     </ng-template>
-    <button mat-button (click)="addUser()">Add user</button>
+    <div class="users_add-btn">
+        <button mat-button (click)="addUser()">Add user</button>
+    </div>
 </ng-template>
 <ng-template #empty>
     <p>Select a channel to view users</p>

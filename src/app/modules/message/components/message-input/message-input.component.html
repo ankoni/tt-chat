@@ -1,0 +1,12 @@
+<form class="message_form">
+    <mat-form-field [className]="'message_input'">
+        <textarea matInput [formControl]="messageTextControl" rows="3"></textarea>
+    </mat-form-field>
+    <div class="message_btn">
+        <button mat-icon-button type="button"
+                [disabled]="!messageTextControl.value"
+                (click)="handleSendMessageBtn()">
+            <mat-icon>arrow_forward</mat-icon>
+        </button>
+    </div>
+</form>

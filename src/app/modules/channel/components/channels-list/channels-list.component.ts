@@ -1,11 +1,12 @@
 import { AsyncPipe } from '@angular/common'
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, DestroyRef, OnInit } from '@angular/core'
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { FormControl, ReactiveFormsModule } from '@angular/forms'
 import { MatButton } from '@angular/material/button'
 import { MatDialog, MatDialogRef } from '@angular/material/dialog'
-import { MatListOption, MatSelectionList } from '@angular/material/list'
+import { MatListOption, MatListSubheaderCssMatStyler, MatSelectionList } from '@angular/material/list'
 import { Store } from '@ngrx/store'
-import { Observable, take, tap } from 'rxjs'
+import { filter, Observable, take, tap } from 'rxjs'
 import { AddChannelData, ChannelData, ChatState } from '../../models/channel.model'
 import { ChannelDataService } from '../../services/channel-data.service'
 import { getAllChannels } from '../../store/channel.selectors'
@@ -19,7 +20,8 @@ import { AddChannelDialogComponent } from '../add-channel-dialog/add-channel-dia
         MatButton,
         MatSelectionList,
         ReactiveFormsModule,
-        MatListOption
+        MatListOption,
+        MatListSubheaderCssMatStyler,
     ],
     templateUrl: './channels-list.component.html',
     styleUrl: './channels-list.component.scss',
@@ -28,12 +30,13 @@ import { AddChannelDialogComponent } from '../add-channel-dialog/add-channel-dia
 export class ChannelsListComponent implements OnInit {
     private addDialogRef: MatDialogRef<AddChannelDialogComponent> | null = null
     channelList$: Observable<ChannelData[]> = this.store.select(getAllChannels)
-    channelControl: FormControl<string | null> = new FormControl(null)
+    channelControl: FormControl<string[] | null> = new FormControl(null)
 
     constructor(
-        private store: Store<{ chat: ChatState }>,
+        private store: Store<{ channels: ChatState }>,
         private chatDataService: ChannelDataService,
-        private matDialog: MatDialog
+        private matDialog: MatDialog,
+        private destroyRef: DestroyRef,
     ) {
     }
 
@@ -49,8 +52,9 @@ export class ChannelsListComponent implements OnInit {
         this.addDialogRef = this.matDialog.open(AddChannelDialogComponent)
         this.addDialogRef.afterClosed()
             .pipe(
-                take(1),
-                tap(() => this.addDialogRef = null)
+                tap(() => this.addDialogRef = null),
+                filter(Boolean),
+                takeUntilDestroyed(this.destroyRef)
             )
             .subscribe((data: AddChannelData) => {
                 this.chatDataService.addChannel(data)
@@ -58,6 +62,9 @@ export class ChannelsListComponent implements OnInit {
     }
 
     onSelectChannel(): void {
-        this.chatDataService.selectChannel(this.channelControl.value as string)
+        const selected: string | undefined = this.channelControl.value?.toString()
+        if (selected) {
+            this.chatDataService.selectChannel(selected)
+        }
     }
 }

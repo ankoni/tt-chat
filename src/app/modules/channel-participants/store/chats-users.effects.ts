@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core'
 import { Actions, createEffect, ofType } from '@ngrx/effects'
 import { Store } from '@ngrx/store'
-import { exhaustMap, map } from 'rxjs'
+import { exhaustMap, map, switchMap } from 'rxjs'
 import { AuthState } from '../../auth/models/login.model'
 import { UserData } from '../../user/models/user.model'
+import { saveUserDataById, saveUsersData } from '../../user/store/user.actions'
 import { ChatsUsersApiService } from '../services/chats-users-api.service'
 import { addUserToChannel, loadChannelUserList, updateChannelUserList } from './chats-users.actions'
 
@@ -15,8 +16,11 @@ export class ChatsUsersEffects {
             exhaustMap(({ channelId }) => {
                 return this.chatsUserApiService.getChannelsUsers(channelId)
                     .pipe(
-                        map((usersData: UserData[]) => {
-                            return updateChannelUserList({ channelId, usersData })
+                        switchMap((usersData: UserData[]) => {
+                            return [
+                                updateChannelUserList({ channelId, usersData }),
+                                saveUsersData({ data: usersData })
+                            ]
                         })
                     )
             })

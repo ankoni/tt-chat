@@ -1,0 +1,32 @@
+.users {
+    &_title {
+        font-weight: 700;
+    }
+    &_add-btn {
+        display: flex;
+        justify-content: flex-end;
+    }
+    &_state {
+        padding-left: 2em;
+        &:after {
+            content: '';
+            display: block;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            position: absolute;
+            left: 1em;
+            top: calc(50% - 8px);
+        }
+        &.online {
+            &:after {
+                background-color: green;
+            }
+        }
+        &.offline {
+            &:after {
+                background-color: red;
+            }
+        }
+    }
+}

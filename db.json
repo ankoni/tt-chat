@@ -11,7 +11,7 @@
       "id": "d7c8b657-17cd-4026-9ea7-d729c96c3b41",
       "username": "Kori",
       "email": "Kori@mail.ru",
-      "password": "1111",
+      "password": "$2a$10$oLjQ7V8ZlZU1V3NHY69AlOwwUPtjxogUvjNYWH3854MsFIXPh3y9.",
       "is_online": true
     },
     {
@@ -83,9 +83,50 @@
     {
       "id": "wz1Kyjl",
       "name": "channel test"
+    },
+    {
+      "name": "hi",
+      "id": "s_8duP8"
     }
   ],
-  "messages": [],
+  "messages": [
+    {
+      "channel_id": "XHqsqJ-",
+      "from_user": "eSVtxN-",
+      "content": "hi",
+      "id": 1
+    },
+    {
+      "channel_id": "XHqsqJ-",
+      "from_user": "eSVtxN-",
+      "content": "hello",
+      "id": 2
+    },
+    {
+      "channel_id": "XHqsqJ-",
+      "from_user": "eSVtxN-",
+      "content": "123",
+      "id": 3
+    },
+    {
+      "channel_id": "XHqsqJ-",
+      "from_user": "eSVtxN-",
+      "content": "4444",
+      "id": 4
+    },
+    {
+      "channel_id": "wz1Kyjl",
+      "from_user": "eSVtxN-",
+      "content": "2222",
+      "id": 5
+    },
+    {
+      "channel_id": "XHqsqJ-",
+      "from_user": "d7c8b657-17cd-4026-9ea7-d729c96c3b41",
+      "content": "hi",
+      "id": 6
+    }
+  ],
   "user_channels": [
     {
       "user_id": "eSVtxN-",
@@ -145,6 +186,11 @@
       ],
       "user_id": "0f4c3beb-f82e-4715-8681-00851c3cef70",
       "id": 9
+    },
+    {
+      "channel_id": "s_8duP8",
+      "user_id": "eSVtxN-",
+      "id": 10
     }
   ]
 }

@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store'
 import { Observable, of, switchMap, take } from 'rxjs'
 import { ChatState } from '../../channel/models/channel.model'
 import { getSelectedChannel } from '../../channel/store/channel.selectors'
-import { UserData } from '../../user/models/user.model'
+import { UserData, UserState } from '../../user/models/user.model'
 import { ChannelParticipantData } from '../models/chats-users.model'
 import { addUserToChannel } from '../store/chats-users.actions'
 import { getAllChannelParticipants } from '../store/chats-users.selector'
@@ -15,7 +15,7 @@ import { ChatsUsersApiService } from './chats-users-api.service'
 export class ChannelUsersService {
 
     constructor(
-        private store: Store<{ user: UserData, channelParticipants: ChannelParticipantData, chat: ChatState }>,
+        private store: Store<{ user: UserState, channelParticipants: ChannelParticipantData, channels: ChatState }>,
         private chatsUserApiService: ChatsUsersApiService,
     ) {
     }

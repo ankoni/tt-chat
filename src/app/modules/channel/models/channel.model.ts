@@ -11,7 +11,6 @@ export type ChannelUserRel = {
 export type ChannelData = {
     id: string
     name: string
-    users?: string[]
 }
 
 export type AddChannelDialogData = Pick<AddChannelData, 'name'>

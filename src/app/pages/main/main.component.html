@@ -1,6 +1,11 @@
-<app-main-header
-    [username]="username$ | async"
-    (logoutEmitter)="logoutHandler()"
-/>
-<app-channels-list/>
-<app-channel-participants/>
+<div class="chat-menu-container">
+    <app-main-header
+        [username]="username$ | async"
+        (logoutEmitter)="logoutHandler()"
+    />
+    <app-channels-list/>
+    <app-channel-participants/>
+</div>
+<div class="message-container">
+    <app-messages />
+</div>

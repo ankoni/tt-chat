@@ -1,13 +1,18 @@
 import { Injectable } from '@angular/core'
 import { Actions, createEffect, ofType } from '@ngrx/effects'
 import { Action, Store } from '@ngrx/store'
-import { EMPTY, exhaustMap, map, of, switchMap, take, withLatestFrom } from 'rxjs'
+import { EMPTY, exhaustMap, map, withLatestFrom } from 'rxjs'
 import { AuthState } from '../../auth/models/login.model'
-import { AuthApiService } from '../../auth/services/auth-api.service'
 import { authIdSelector } from '../../auth/store/auth.selectors'
-import { UserData } from '../models/user.model'
+import { UserData, UserState } from '../models/user.model'
 import { UserApiService } from '../services/user-api.service'
-import { updateOnlineAndLoadUserAction, saveUserAction, updateOnlineAction, updateUserDataAction } from './user.actions'
+import {
+    loadUserDataById,
+    saveUserAction, saveUserDataById,
+    updateOnlineAction,
+    updateOnlineAndLoadUserAction,
+    updateUserDataAction
+} from './user.actions'
 import { getCurrentUser } from './user.selectors'
 
 @Injectable()
@@ -54,10 +59,30 @@ export class UserEffects {
         )
     )
 
+    loadUserDataById$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(loadUserDataById),
+            exhaustMap(({ id }) => {
+                return this.userApiService.getUsersDataRequest([id])
+                    .pipe(
+                        map((usersData: UserData[]) => {
+                            if (!usersData.length) {
+                                console.error('User not found')
+                            }
+                            return usersData.length ? usersData[0] : { id: '', username: 'Unknown user', is_online: false }
+                        }),
+                        map((userData: UserData) => {
+                            return saveUserDataById({ data: userData })
+                        })
+                    )
+            })
+        )
+    )
+
     constructor(
         private actions$: Actions,
         private userApiService: UserApiService,
-        private store: Store<{ auth: AuthState, user: UserData }>
+        private store: Store<{ auth: AuthState, user: UserState }>
     ) {
     }
 }

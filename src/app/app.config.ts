@@ -12,15 +12,24 @@ import { ChannelEffects } from './modules/channel/store/channel.effects'
 import { channelReducer } from './modules/channel/store/channel.reducer'
 import { ChatsUsersEffects } from './modules/channel-participants/store/chats-users.effects'
 import { chatsUserReducer } from './modules/channel-participants/store/chats-users.reducer'
+import { MessageEffects } from './modules/message/store/message.effects'
+import { messageReducer } from './modules/message/store/message.reducer'
 import { UserEffects } from './modules/user/store/user.effects'
 import { userReducer } from './modules/user/store/user.reducer'
 
 export const appConfig: ApplicationConfig = {
     providers: [
-        provideZoneChangeDetection({eventCoalescing: true}),
+        provideZoneChangeDetection({ eventCoalescing: true }),
         provideHttpClient(),
         provideRouter(routes),
-        provideStore({ auth: authReducer, user: userReducer, chat: channelReducer, channelParticipants: chatsUserReducer }),
-        provideEffects([AuthEffects, UserEffects, ChannelEffects, ChatsUsersEffects]), provideAnimationsAsync(),
+        provideStore({
+            auth: authReducer,
+            user: userReducer,
+            channels: channelReducer,
+            channelParticipants: chatsUserReducer,
+            messages: messageReducer
+        }),
+        provideEffects([AuthEffects, UserEffects, ChannelEffects, ChatsUsersEffects, MessageEffects]),
+        provideAnimationsAsync(),
     ]
 }
