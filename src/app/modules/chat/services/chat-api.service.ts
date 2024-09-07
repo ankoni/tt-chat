@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { forkJoin, map, Observable, switchMap } from 'rxjs'
+import { map, Observable, switchMap } from 'rxjs'
 import { AddChannelData, ChannelData, ChannelUserRel } from '../models/channel.model'
 
 @Injectable({ providedIn: 'root' })

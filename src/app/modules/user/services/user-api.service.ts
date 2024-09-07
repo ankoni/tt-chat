@@ -13,8 +13,8 @@ export class UserApiService {
     ) {
     }
 
-    getUserDataRequest(userId: string): Observable<UserData> {
-        return this.http.get<UserData>(`/api/users/${userId}`)
+    getUsersDataRequest(userIds: string[]): Observable<UserData[]> {
+        return this.http.get<UserData[]>(`/api/users?id_like=${userIds.join('|')}`)
     }
 
     updateOnlineStateRequest(userId: string, isOnline: boolean): Observable<UserData> {

@@ -12,3 +12,5 @@ export const getChannelById = (channelId: string) => createSelector(
     (channels: ChannelData[]) =>
         channels.find((channel: ChannelData) => channel.id === channelId)
 )
+
+export const getSelectedChannel = (state: ChatSelectorState) => state.chat.selectedChannelId

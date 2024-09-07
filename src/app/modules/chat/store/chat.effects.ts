@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Actions, createEffect, ofType } from '@ngrx/effects'
 import { Action, Store } from '@ngrx/store'
-import { exhaustMap, map, take, withLatestFrom } from 'rxjs'
+import { exhaustMap, map, withLatestFrom } from 'rxjs'
 import { AuthState } from '../../auth/models/login.model'
 import { authIdSelector } from '../../auth/store/auth.selectors'
 import { AddChannelData, AddChannelDialogData, ChannelData } from '../models/channel.model'

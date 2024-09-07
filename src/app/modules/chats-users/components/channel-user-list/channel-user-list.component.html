@@ -1,0 +1,21 @@
+<h5>Users</h5>
+<ng-container
+    [ngTemplateOutlet]="(selectedChannelId$ | async) ? users : empty"
+    [ngTemplateOutletContext]="{ users: channelUsers$ | async }"
+/>
+
+<ng-template #users let-users="users">
+    <ng-container [ngTemplateOutlet]="users.length ? userList : noUser"></ng-container>
+    <ng-template #userList>
+        @for (user of users; track user.id) {
+            <div>{{ user.username }}</div>
+        }
+    </ng-template>
+    <ng-template #noUser>
+        <p>There are no users on the channel. Add users to chat</p>
+    </ng-template>
+    <button mat-button (click)="addUser()">Add user</button>
+</ng-template>
+<ng-template #empty>
+    <p>Select a channel to view users</p>
+</ng-template>

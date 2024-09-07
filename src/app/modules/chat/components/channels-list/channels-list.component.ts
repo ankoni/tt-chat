@@ -1,7 +1,9 @@
 import { AsyncPipe } from '@angular/common'
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
+import { FormControl, ReactiveFormsModule } from '@angular/forms'
 import { MatButton } from '@angular/material/button'
 import { MatDialog, MatDialogRef } from '@angular/material/dialog'
+import { MatListOption, MatSelectionList } from '@angular/material/list'
 import { Store } from '@ngrx/store'
 import { Observable, take, tap } from 'rxjs'
 import { AddChannelData, ChannelData, ChatState } from '../../models/channel.model'
@@ -14,7 +16,10 @@ import { AddChannelDialogComponent } from '../add-channel-dialog/add-channel-dia
     standalone: true,
     imports: [
         AsyncPipe,
-        MatButton
+        MatButton,
+        MatSelectionList,
+        ReactiveFormsModule,
+        MatListOption
     ],
     templateUrl: './channels-list.component.html',
     styleUrl: './channels-list.component.scss',
@@ -23,6 +28,7 @@ import { AddChannelDialogComponent } from '../add-channel-dialog/add-channel-dia
 export class ChannelsListComponent implements OnInit {
     private addDialogRef: MatDialogRef<AddChannelDialogComponent> | null = null
     channelList$: Observable<ChannelData[]> = this.store.select(getAllChannels)
+    channelControl: FormControl<string | null> = new FormControl(null)
 
     constructor(
         private store: Store<{ chat: ChatState }>,
@@ -49,5 +55,9 @@ export class ChannelsListComponent implements OnInit {
             .subscribe((data: AddChannelData) => {
                 this.chatDataService.addChannel(data)
             })
+    }
+
+    onSelectChannel(): void {
+        this.chatDataService.selectChannel(this.channelControl.value as string)
     }
 }

@@ -1,4 +1,5 @@
 export type ChatState = {
+    selectedChannelId?: string
     channels: ChannelData[]
 }
 

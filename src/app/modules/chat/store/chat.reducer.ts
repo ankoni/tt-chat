@@ -1,10 +1,6 @@
 import { createReducer, on } from '@ngrx/store'
-import { ChannelData } from '../models/channel.model'
-import { saveChannelListAction } from './chat.actions'
-
-type ChatState = {
-    channels: ChannelData[]
-}
+import { ChatState } from '../models/channel.model'
+import { saveChannelListAction, selectChannel } from './chat.actions'
 
 const initialState: ChatState = {
     channels: []
@@ -17,5 +13,8 @@ export const chatReducer = createReducer(
             ...state,
             channels: [...data]
         }
+    }),
+    on(selectChannel, (state, { id }) => {
+        return { ...state, selectedChannelId: id }
     })
 )

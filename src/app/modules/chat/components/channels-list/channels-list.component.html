@@ -1,5 +1,11 @@
 <h5>Channels</h5>
-@for (channel of (channelList$ | async); track channel.id) {
-    <div> {{ channel.name}} </div>
-}
+<mat-selection-list [formControl]="channelControl"
+                    [multiple]="false"
+                    [hideSingleSelectionIndicator]="true"
+                    (selectionChange)="onSelectChannel()">
+    @for (channel of (channelList$ | async); track channel.id) {
+        <mat-list-option [value]="channel.id">{{ channel.name }}</mat-list-option>
+    }
+</mat-selection-list>
+
 <button mat-button (click)="addChannel()">Add channel</button>
