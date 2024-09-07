@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common'
-import { ChangeDetectionStrategy, Component, DestroyRef, Input } from '@angular/core'
+import { AfterViewInit, ChangeDetectionStrategy, Component, DestroyRef, ElementRef, Input, OnInit } from '@angular/core'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { MatListItem, MatListItemLine, MatListItemTitle } from '@angular/material/list'
 import { BehaviorSubject, filter } from 'rxjs'
@@ -20,7 +20,7 @@ import { UserDataService } from '../../../user/services/user-data.service'
     styleUrl: './message-item.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MessageItemComponent {
+export class MessageItemComponent implements AfterViewInit {
     userName$: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null)
 
     @Input() set userId(id: string) {
@@ -28,12 +28,19 @@ export class MessageItemComponent {
     }
 
     @Input() content!: string
+    @Input() isLast: boolean = false
 
     constructor(
-        private userApiService: UserApiService,
         private userService: UserDataService,
-        private destroyRef: DestroyRef
+        private destroyRef: DestroyRef,
+        private elementRef: ElementRef
     ) {
+    }
+
+    ngAfterViewInit(): void {
+        if (this.isLast) {
+            this.elementRef.nativeElement.scrollIntoView()
+        }
     }
 
     private initUserGetInfo(id: string): void {

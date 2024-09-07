@@ -4,6 +4,7 @@ import { MatButton, MatIconButton } from '@angular/material/button'
 import { MatFormField } from '@angular/material/form-field'
 import { MatIcon } from '@angular/material/icon'
 import { MatInput } from '@angular/material/input'
+import { MatTooltip } from '@angular/material/tooltip'
 
 @Component({
     selector: 'app-message-input',
@@ -14,7 +15,8 @@ import { MatInput } from '@angular/material/input'
         MatButton,
         ReactiveFormsModule,
         MatIconButton,
-        MatIcon
+        MatIcon,
+        MatTooltip
     ],
     templateUrl: './message-input.component.html',
     styleUrl: './message-input.component.scss',

@@ -1,5 +1,5 @@
 import { AsyncPipe, NgTemplateOutlet } from '@angular/common'
-import { ChangeDetectionStrategy, Component } from '@angular/core'
+import { ChangeDetectionStrategy, Component, ElementRef, ViewChild, ViewChildren } from '@angular/core'
 import { MatCard } from '@angular/material/card'
 import { MatFormField } from '@angular/material/form-field'
 import { MatInput } from '@angular/material/input'
@@ -33,6 +33,8 @@ import { MessageItemComponent } from '../message-item/message-item.component'
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MessagesComponent {
+    @ViewChild('messageCards') messageCards: MatCard | null = null
+
     selectedChannel$: Observable<string | undefined> = this.store.select(getSelectedChannel)
     channelName$: Observable<string | undefined> = this.store.select(getSelectedChannelInfo)
         .pipe(map((channel: ChannelData | undefined) => channel?.name))

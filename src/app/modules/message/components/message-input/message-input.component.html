@@ -7,6 +7,7 @@
     </mat-form-field>
     <div class="message_btn">
         <button mat-icon-button type="button"
+                [matTooltip]="'Send message'"
                 [disabled]="!messageTextControl.value"
                 (click)="handleSendMessageBtn()">
             <mat-icon>arrow_forward</mat-icon>

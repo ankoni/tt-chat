@@ -17,8 +17,8 @@
     <app-message-input (onSendEmitter)="onSendEmitter($event)"/>
 
     <ng-template #messageList let-messages="messages">
-        @for (message of messages; track message.id) {
-            <app-message-item [userId]="message.from_user" [content]="message.content"/>
+        @for (message of messages; track message.id; let isLast=$last) {
+            <app-message-item [userId]="message.from_user" [content]="message.content" [isLast]="isLast"/>
         }
     </ng-template>
     <ng-template #noMessage>
