@@ -13,7 +13,7 @@ export type LoginFormData = {
 
 export type TokenData = {
     accessToken: string
-    user: Pick<UserData, 'id'>
+    user: UserData
 }
 
 export type AuthError = {

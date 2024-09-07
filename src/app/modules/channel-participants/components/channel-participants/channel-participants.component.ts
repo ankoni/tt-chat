@@ -7,9 +7,10 @@ import { MatList, MatListItem, MatListSubheaderCssMatStyler } from '@angular/mat
 import { MatTooltip } from '@angular/material/tooltip'
 import { Store } from '@ngrx/store'
 import { Observable, of, switchMap, tap, withLatestFrom } from 'rxjs'
+import { AuthState } from '../../../auth/models/login.model'
 import { ChatState } from '../../../channel/models/channel.model'
 import { getSelectedChannel } from '../../../channel/store/channel.selectors'
-import { UserData, UserState } from '../../../user/models/user.model'
+import { UserData } from '../../../user/models/user.model'
 import { ChannelParticipantData } from '../../models/chats-users.model'
 import { ChannelUsersService } from '../../services/channel-users.service'
 import { loadChannelUserList } from '../../store/chats-users.actions'
@@ -48,7 +49,7 @@ export class ChannelParticipantsComponent {
         )
 
     constructor(
-        private store: Store<{ channels: ChatState, channelParticipants: ChannelParticipantData, user: UserState }>,
+        private store: Store<{ channels: ChatState, channelParticipants: ChannelParticipantData, auth: AuthState }>,
         private dialog: MatDialog,
         private channelUsersService: ChannelUsersService,
         private destroyRef: DestroyRef

@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects'
 import { Action, Store } from '@ngrx/store'
 import { EMPTY, exhaustMap, map, withLatestFrom } from 'rxjs'
 import { AuthState } from '../../auth/models/login.model'
-import { authIdSelector } from '../../auth/store/auth.selectors'
+import { authIdSelector, getCurrentUser } from '../../auth/store/auth.selectors'
 import { UserData, UserState } from '../models/user.model'
 import { UserApiService } from '../services/user-api.service'
 import {
@@ -13,7 +13,6 @@ import {
     updateOnlineAndLoadUserAction,
     updateUserDataAction
 } from './user.actions'
-import { getCurrentUser } from './user.selectors'
 
 @Injectable()
 export class UserEffects {
@@ -22,17 +21,13 @@ export class UserEffects {
             .pipe(
                 ofType(updateOnlineAndLoadUserAction),
                 withLatestFrom(
-                    this.store.select(authIdSelector),
-                    this.store.select(getCurrentUser)
+                    this.store.select(getCurrentUser),
                 ),
-                exhaustMap(([_, userId, currentUserData]: [Action, string | undefined, UserData | null]) => {
-                    if (!userId) {
-                        throw new Error('User id not found')
+                exhaustMap(([_, currentUserData]: [Action, UserData | null]) => {
+                    if (!currentUserData?.id) {
+                        throw new Error('User not found')
                     }
-                    if (currentUserData) {
-                        return EMPTY
-                    }
-                    return this.userApiService.updateOnlineStateRequest(userId, true)
+                    return this.userApiService.updateOnlineStateRequest(currentUserData.id, true)
                         .pipe(
                             map((userData: UserData) =>
                                 saveUserAction({ data: userData })
@@ -82,7 +77,7 @@ export class UserEffects {
     constructor(
         private actions$: Actions,
         private userApiService: UserApiService,
-        private store: Store<{ auth: AuthState, user: UserState }>
+        private store: Store<{ auth: AuthState }>
     ) {
     }
 }

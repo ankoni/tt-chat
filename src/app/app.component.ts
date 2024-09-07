@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core'
+import { AfterContentInit, Component, HostListener, OnInit } from '@angular/core'
 import { RouterOutlet } from '@angular/router'
 import { AppService } from './core/services/app.service'
 import { UserDataService } from './modules/user/services/user-data.service'
@@ -10,7 +10,7 @@ import { UserDataService } from './modules/user/services/user-data.service'
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements AfterContentInit {
     constructor(
         private appService: AppService,
         private userDataService: UserDataService,
@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
         this.userDataService.setUserOffline()
     }
 
-    ngOnInit(): void {
+    ngAfterContentInit(): void {
         this.appService.initAuthData()
     }
 }

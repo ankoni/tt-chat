@@ -1,11 +1,12 @@
 import { createSelector } from '@ngrx/store'
-import { UserData, UserState } from '../../user/models/user.model'
-import { getCurrentUser } from '../../user/store/user.selectors'
+import { AuthState } from '../../auth/models/login.model'
+import { getCurrentUser } from '../../auth/store/auth.selectors'
+import { UserData } from '../../user/models/user.model'
 import { ChannelParticipantData } from '../models/chats-users.model'
 
 type ChatsUsersState = {
     channelParticipants: ChannelParticipantData,
-    user: UserState ,
+    auth: AuthState,
 }
 
 export const getChannelParticipants = (state: ChatsUsersState) => state.channelParticipants

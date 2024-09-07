@@ -5,8 +5,9 @@ import { MatButton } from '@angular/material/button'
 import { MatFormField, MatLabel } from '@angular/material/form-field'
 import { MatInput } from '@angular/material/input'
 import { Store } from '@ngrx/store'
+import { AuthState } from '../../../auth/models/login.model'
+import { getCurrentUser } from '../../../auth/store/auth.selectors'
 import { UserData, UserState } from '../../models/user.model'
-import { getCurrentUser } from '../../store/user.selectors'
 
 @Component({
     selector: 'app-user-info',
@@ -30,7 +31,7 @@ export class UserInfoComponent implements OnInit {
 
 
     constructor(
-        private store: Store<{ user: UserState }>,
+        private store: Store<{ auth: AuthState }>,
         private destroyRef: DestroyRef
     ) {
     }

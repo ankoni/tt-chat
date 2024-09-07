@@ -6,8 +6,9 @@ import { MatTooltip } from '@angular/material/tooltip'
 import { Router, RouterLink } from '@angular/router'
 import { Store } from '@ngrx/store'
 import { map, Observable } from 'rxjs'
-import { UserData, UserState } from '../../modules/user/models/user.model'
-import { getCurrentUser } from '../../modules/user/store/user.selectors'
+import { AuthState } from '../../modules/auth/models/login.model'
+import { getCurrentUser } from '../../modules/auth/store/auth.selectors'
+import { UserData } from '../../modules/user/models/user.model'
 
 const MENU_ITEM = [
     { key: 'Home', url: '/', icon: 'home' },
@@ -39,7 +40,7 @@ export class MainHeaderComponent {
     @Output() logoutEmitter: EventEmitter<void> = new EventEmitter()
 
     constructor(
-        private store: Store<{ user: UserState }>,
+        private store: Store<{ auth: AuthState }>,
         private router: Router
     ) {
         this.initMenu()

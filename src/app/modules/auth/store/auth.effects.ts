@@ -17,7 +17,7 @@ export class AuthEffects {
             .pipe(
                 ofType(loginAction),
                 exhaustMap(({ data }: { data: LoginFormData }) =>
-                    this.loginService.loginRequest(data)
+                    this.loginService.loginRequestNew(data)
                         .pipe(
                             tap((tokenData: TokenData) => {
                                 this.localStorageService.setItem(LocalStorageKeyItem.auth, tokenData)
