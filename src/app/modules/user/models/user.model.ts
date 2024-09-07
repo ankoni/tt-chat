@@ -12,5 +12,6 @@ export type UserState = {
 export type UserData = {
     id: string
     username: string
-    is_online: boolean
+    is_online: boolean,
+    password?: string,
 }

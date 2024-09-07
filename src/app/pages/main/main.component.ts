@@ -35,11 +35,6 @@ import { getCurrentUser } from '../../modules/user/store/user.selectors'
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MainComponent implements OnInit {
-    username$: Observable<string> = this.store.select(getCurrentUser)
-        .pipe(
-            map((userData: UserData | null) => userData?.username ?? ''),
-        )
-
     constructor(
         private store: Store<{ user: UserState }>,
         private userDataService: UserDataService,

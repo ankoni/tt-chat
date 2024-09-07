@@ -1,6 +1,5 @@
 <div class="chat-menu-container">
     <app-main-header
-        [username]="username$ | async"
         (logoutEmitter)="logoutHandler()"
     />
     <app-channels-list/>

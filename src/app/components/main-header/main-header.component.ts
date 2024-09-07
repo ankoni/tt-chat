@@ -1,7 +1,18 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core'
+import { AsyncPipe } from '@angular/common'
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core'
 import { MatIconButton } from '@angular/material/button'
 import { MatIcon } from '@angular/material/icon'
 import { MatTooltip } from '@angular/material/tooltip'
+import { Router, RouterLink } from '@angular/router'
+import { Store } from '@ngrx/store'
+import { map, Observable } from 'rxjs'
+import { UserData, UserState } from '../../modules/user/models/user.model'
+import { getCurrentUser } from '../../modules/user/store/user.selectors'
+
+const MENU_ITEM = [
+    { key: 'Home', url: '/', icon: 'home' },
+    { key: 'Settings', url: '/user', icon: 'settings' }
+]
 
 @Component({
     selector: 'app-main-header',
@@ -9,17 +20,37 @@ import { MatTooltip } from '@angular/material/tooltip'
     imports: [
         MatIconButton,
         MatIcon,
-        MatTooltip
+        MatTooltip,
+        RouterLink,
+        AsyncPipe
     ],
     templateUrl: './main-header.component.html',
     styleUrl: './main-header.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MainHeaderComponent {
-    @Input() username!: string | null
+    username$: Observable<string> = this.store.select(getCurrentUser)
+        .pipe(
+            map((userData: UserData | null) => userData?.username ?? ''),
+        )
+
+    menuItems: any[] = []
+
     @Output() logoutEmitter: EventEmitter<void> = new EventEmitter()
+
+    constructor(
+        private store: Store<{ user: UserState }>,
+        private router: Router
+    ) {
+        this.initMenu()
+    }
 
     logout(): void {
         this.logoutEmitter.emit()
+    }
+
+    private initMenu(): void {
+        const currentUrl = this.router.url
+        this.menuItems = [...MENU_ITEM].filter((item) => currentUrl !== item.url)
     }
 }
