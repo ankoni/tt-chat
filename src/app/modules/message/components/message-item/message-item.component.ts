@@ -1,6 +1,7 @@
 import { AsyncPipe } from '@angular/common'
-import { ChangeDetectionStrategy, Component, DestroyRef, Input } from '@angular/core'
+import { ChangeDetectionStrategy, Component, DestroyRef, Input, ViewEncapsulation } from '@angular/core'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
+import { MatList, MatListItem, MatListItemLine, MatListItemTitle } from '@angular/material/list'
 import { BehaviorSubject, filter, map } from 'rxjs'
 import { UserData } from '../../../user/models/user.model'
 import { UserApiService } from '../../../user/services/user-api.service'
@@ -10,11 +11,14 @@ import { UserDataService } from '../../../user/services/user-data.service'
     selector: 'app-message-item',
     standalone: true,
     imports: [
-        AsyncPipe
+        AsyncPipe,
+        MatListItemTitle,
+        MatListItemLine,
+        MatListItem
     ],
     templateUrl: './message-item.component.html',
     styleUrl: './message-item.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MessageItemComponent {
     userName$: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null)

@@ -1,4 +1,4 @@
-<div>
-    <h5>{{ userName$ | async }}</h5>
-    {{ content }}
-</div>
+<mat-list-item>
+    <span matListItemTitle class="message_username">{{ userName$ | async }}</span>
+    <span matListItemLine>{{ content }}</span>
+</mat-list-item>

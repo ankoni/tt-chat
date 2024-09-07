@@ -4,12 +4,14 @@
 />
 
 <ng-template #messageContainer let-messages="messageList">
-    <div>
-        <h5>{{ channelName$ | async }}</h5>
-        <ng-container
-            [ngTemplateOutlet]="messages?.length ? messageList : noMessage"
-            [ngTemplateOutletContext]="{ messages: messages }"
-        />
+    <div class="message_list">
+        <h5># {{ channelName$ | async }}</h5>
+        <mat-card appearance="outlined" class="message_block">
+            <ng-container
+                [ngTemplateOutlet]="messages?.length ? messageList : noMessage"
+                [ngTemplateOutletContext]="{ messages: messages }"
+            />
+        </mat-card>
     </div>
 
     <app-message-input (onSendEmitter)="onSendEmitter($event)"/>

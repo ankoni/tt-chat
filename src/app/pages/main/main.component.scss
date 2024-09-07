@@ -11,6 +11,8 @@
     padding: 1em;
     border-right: var(--mdc-outlined-card-outline-color, var(--mat-app-outline-variant)) 1px solid;;
 }
+
 .message-container {
+    display: flex;
     flex: 1 0 auto;
 }

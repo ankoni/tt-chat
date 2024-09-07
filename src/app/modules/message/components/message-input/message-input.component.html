@@ -1,6 +1,9 @@
 <form class="message_form">
     <mat-form-field [className]="'message_input'">
-        <textarea matInput [formControl]="messageTextControl" rows="3"></textarea>
+        <textarea matInput
+                  [formControl]="messageTextControl" rows="3"
+                  placeholder="Enter message"
+        ></textarea>
     </mat-form-field>
     <div class="message_btn">
         <button mat-icon-button type="button"

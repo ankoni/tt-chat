@@ -1,3 +1,7 @@
+:host {
+    flex: 0 1 auto;
+}
+
 .message {
     &_form {
         display: flex;

@@ -1,7 +1,9 @@
 import { AsyncPipe, NgTemplateOutlet } from '@angular/common'
 import { ChangeDetectionStrategy, Component } from '@angular/core'
+import { MatCard } from '@angular/material/card'
 import { MatFormField } from '@angular/material/form-field'
 import { MatInput } from '@angular/material/input'
+import { MatList, MatListItem } from '@angular/material/list'
 import { Store } from '@ngrx/store'
 import { filter, map, Observable, switchMap, tap } from 'rxjs'
 import { ChannelData, ChatState } from '../../../channel/models/channel.model'
@@ -21,7 +23,10 @@ import { MessageItemComponent } from '../message-item/message-item.component'
         MatFormField,
         MatInput,
         MessageInputComponent,
-        MessageItemComponent
+        MessageItemComponent,
+        MatCard,
+        MatList,
+        MatListItem
     ],
     templateUrl: './messages.component.html',
     styleUrl: './messages.component.scss',
@@ -46,9 +51,9 @@ export class MessagesComponent {
     ) {
     }
 
-    onSendEmitter(messageTest: string): void {
-        if (messageTest) {
-            this.store.dispatch(sendMessage({ content: messageTest }))
+    onSendEmitter(messageText: string): void {
+        if (messageText) {
+            this.store.dispatch(sendMessage({ content: messageText }))
         }
     }
 }
