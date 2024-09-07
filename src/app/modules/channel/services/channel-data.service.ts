@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { AddChannelData } from '../models/channel.model'
-import { addChannel, loadChannelListAction, selectChannel } from '../store/chat.actions'
+import { addChannel, loadChannelListAction, selectChannel } from '../store/channel.actions'
 
 @Injectable({
     providedIn: 'root'
 })
-export class ChatDataService {
+export class ChannelDataService {
 
     constructor(
         private store: Store

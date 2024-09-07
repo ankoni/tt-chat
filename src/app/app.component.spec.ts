@@ -17,13 +17,13 @@ describe('AppComponent', () => {
   it(`should have the 'tt-chat' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('tt-chat');
+    expect(app.title).toEqual('tt-channel');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, tt-chat');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, tt-channel');
   });
 });

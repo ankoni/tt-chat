@@ -32,6 +32,7 @@
     "@angular/cli": "^18.2.2",
     "@angular/compiler-cli": "^18.2.0",
     "@types/jasmine": "~5.1.0",
+    "@types/mocha": "^10.0.7",
     "jasmine-core": "~5.2.0",
     "json-server": "^0.17.4",
     "json-server-auth": "^2.1.0",

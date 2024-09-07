@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { forkJoin, Observable, of, switchMap } from 'rxjs'
-import { ChannelUserRel } from '../../chat/models/channel.model'
+import { ChannelUserRel } from '../../channel/models/channel.model'
 import { UserData } from '../../user/models/user.model'
 import { UserApiService } from '../../user/services/user-api.service'
 

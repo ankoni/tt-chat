@@ -4,8 +4,8 @@ import { Store } from '@ngrx/store'
 import { map, Observable } from 'rxjs'
 import { MainHeaderComponent } from '../../components/main-header/main-header.component'
 import { LoginService } from '../../modules/auth/services/login.service'
-import { ChannelsListComponent } from '../../modules/chat/components/channels-list/channels-list.component'
-import { ChatDataService } from '../../modules/chat/services/chat-data.service'
+import { ChannelsListComponent } from '../../modules/channel/components/channels-list/channels-list.component'
+import { ChannelDataService } from '../../modules/channel/services/channel-data.service'
 import {
     ChannelParticipantsComponent
 } from '../../modules/channel-participants/components/channel-participants/channel-participants.component'
@@ -23,7 +23,7 @@ import { getCurrentUser } from '../../modules/user/store/user.selectors'
         ChannelParticipantsComponent
     ],
     providers: [
-        ChatDataService
+        ChannelDataService
     ],
     templateUrl: './main.component.html',
     styleUrl: './main.component.scss',

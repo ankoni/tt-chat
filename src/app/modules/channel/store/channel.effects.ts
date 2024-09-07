@@ -5,11 +5,11 @@ import { exhaustMap, map, withLatestFrom } from 'rxjs'
 import { AuthState } from '../../auth/models/login.model'
 import { authIdSelector } from '../../auth/store/auth.selectors'
 import { AddChannelData, AddChannelDialogData, ChannelData } from '../models/channel.model'
-import { ChatApiService } from '../services/chat-api.service'
-import { addChannel, loadChannelListAction, saveChannelListAction } from './chat.actions'
+import { ChannelApiService } from '../services/channel-api.service'
+import { addChannel, loadChannelListAction, saveChannelListAction } from './channel.actions'
 
 @Injectable()
-export class ChatEffects {
+export class ChannelEffects {
     loadChannels$ = createEffect(() =>
         this.actions$.pipe(
             ofType(loadChannelListAction),
@@ -52,7 +52,7 @@ export class ChatEffects {
     constructor(
         private actions$: Actions,
         private store: Store<{ auth: AuthState }>,
-        private chatApiService: ChatApiService,
+        private chatApiService: ChannelApiService,
     ) {
     }
 }

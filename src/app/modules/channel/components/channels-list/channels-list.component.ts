@@ -7,8 +7,8 @@ import { MatListOption, MatSelectionList } from '@angular/material/list'
 import { Store } from '@ngrx/store'
 import { Observable, take, tap } from 'rxjs'
 import { AddChannelData, ChannelData, ChatState } from '../../models/channel.model'
-import { ChatDataService } from '../../services/chat-data.service'
-import { getAllChannels } from '../../store/chat.selectors'
+import { ChannelDataService } from '../../services/channel-data.service'
+import { getAllChannels } from '../../store/channel.selectors'
 import { AddChannelDialogComponent } from '../add-channel-dialog/add-channel-dialog.component'
 
 @Component({
@@ -32,7 +32,7 @@ export class ChannelsListComponent implements OnInit {
 
     constructor(
         private store: Store<{ chat: ChatState }>,
-        private chatDataService: ChatDataService,
+        private chatDataService: ChannelDataService,
         private matDialog: MatDialog
     ) {
     }

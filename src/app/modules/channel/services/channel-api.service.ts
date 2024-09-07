@@ -4,7 +4,7 @@ import { map, Observable, switchMap } from 'rxjs'
 import { AddChannelData, ChannelData, ChannelUserRel } from '../models/channel.model'
 
 @Injectable({ providedIn: 'root' })
-export class ChatApiService {
+export class ChannelApiService {
 
     constructor(
         private http: HttpClient,
