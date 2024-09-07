@@ -4,9 +4,9 @@ import { Observable, of, switchMap, take } from 'rxjs'
 import { ChatState } from '../../chat/models/channel.model'
 import { getSelectedChannel } from '../../chat/store/chat.selectors'
 import { UserData } from '../../user/models/user.model'
-import { ChatsUsersData } from '../models/chats-users.model'
+import { ChannelParticipantData } from '../models/chats-users.model'
 import { addUserToChannel } from '../store/chats-users.actions'
-import { getAllChannelsUser } from '../store/chats-users.selector'
+import { getAllChannelParticipants } from '../store/chats-users.selector'
 import { ChatsUsersApiService } from './chats-users-api.service'
 
 @Injectable({
@@ -15,7 +15,7 @@ import { ChatsUsersApiService } from './chats-users-api.service'
 export class ChannelUsersService {
 
     constructor(
-        private store: Store<{ user: UserData, chatsUsers: ChatsUsersData, chat: ChatState }>,
+        private store: Store<{ user: UserData, channelParticipants: ChannelParticipantData, chat: ChatState }>,
         private chatsUserApiService: ChatsUsersApiService,
     ) {
     }
@@ -26,7 +26,7 @@ export class ChannelUsersService {
                 take(1),
                 switchMap((channelId?: string) =>
                     channelId
-                        ? this.store.select(getAllChannelsUser(channelId))
+                        ? this.store.select(getAllChannelParticipants(channelId))
                             .pipe(take(1))
                         : of([])
                 ),

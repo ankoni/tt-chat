@@ -7,8 +7,8 @@ import { LoginService } from '../../modules/auth/services/login.service'
 import { ChannelsListComponent } from '../../modules/chat/components/channels-list/channels-list.component'
 import { ChatDataService } from '../../modules/chat/services/chat-data.service'
 import {
-    ChannelUserListComponent
-} from '../../modules/chats-users/components/channel-user-list/channel-user-list.component'
+    ChannelParticipantsComponent
+} from '../../modules/channel-participants/components/channel-participants/channel-participants.component'
 import { UserData } from '../../modules/user/models/user.model'
 import { UserDataService } from '../../modules/user/services/user-data.service'
 import { getCurrentUser } from '../../modules/user/store/user.selectors'
@@ -20,7 +20,7 @@ import { getCurrentUser } from '../../modules/user/store/user.selectors'
         MainHeaderComponent,
         AsyncPipe,
         ChannelsListComponent,
-        ChannelUserListComponent
+        ChannelParticipantsComponent
     ],
     providers: [
         ChatDataService

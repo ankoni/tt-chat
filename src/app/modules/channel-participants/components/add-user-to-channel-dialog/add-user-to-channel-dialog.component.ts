@@ -12,7 +12,7 @@ import { UserData } from '../../../user/models/user.model'
 import { ChannelUsersService } from '../../services/channel-users.service'
 
 @Component({
-    selector: 'app-add-channel-user-dialog',
+    selector: 'app-add-user-to-channel-dialog',
     standalone: true,
     imports: [
         MatDialogContent,
@@ -26,17 +26,17 @@ import { ChannelUsersService } from '../../services/channel-users.service'
         MatDialogActions,
         MatButton
     ],
-    templateUrl: './add-channel-user-dialog.component.html',
-    styleUrl: './add-channel-user-dialog.component.scss',
+    templateUrl: './add-user-to-channel-dialog.component.html',
+    styleUrl: './add-user-to-channel-dialog.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AddChannelUserDialogComponent {
+export class AddUserToChannelDialogComponent {
     userControl: FormControl<string[] | null> = new FormControl(null, Validators.required)
     users$ = new BehaviorSubject<UserData[]>([])
 
     constructor(
         private channelUserService: ChannelUsersService,
-        private dialogRef: MatDialogRef<AddChannelUserDialogComponent>,
+        private dialogRef: MatDialogRef<AddUserToChannelDialogComponent>,
         private destroyRef: DestroyRef
     ) {
         this.channelUserService.getUsersToAddInChannels()

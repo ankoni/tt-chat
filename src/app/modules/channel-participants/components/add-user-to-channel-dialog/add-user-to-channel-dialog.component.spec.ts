@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddChannelUserDialogComponent } from './add-channel-user-dialog.component';
+import { AddUserToChannelDialogComponent } from './add-user-to-channel-dialog.component';
 
 describe('AddChannelUserDialogComponent', () => {
-  let component: AddChannelUserDialogComponent;
-  let fixture: ComponentFixture<AddChannelUserDialogComponent>;
+  let component: AddUserToChannelDialogComponent;
+  let fixture: ComponentFixture<AddUserToChannelDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AddChannelUserDialogComponent]
+      imports: [AddUserToChannelDialogComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AddChannelUserDialogComponent);
+    fixture = TestBed.createComponent(AddUserToChannelDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

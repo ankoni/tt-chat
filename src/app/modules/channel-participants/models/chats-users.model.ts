@@ -1,5 +1,5 @@
 import { UserData } from '../../user/models/user.model'
 
-export type ChatsUsersData = {
+export type ChannelParticipantData = {
     [key: string]: UserData[]
 }

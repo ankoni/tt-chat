@@ -8,26 +8,26 @@ import { Observable, of, switchMap, tap, withLatestFrom } from 'rxjs'
 import { ChatState } from '../../../chat/models/channel.model'
 import { getSelectedChannel } from '../../../chat/store/chat.selectors'
 import { UserData } from '../../../user/models/user.model'
-import { ChatsUsersData } from '../../models/chats-users.model'
+import { ChannelParticipantData } from '../../models/chats-users.model'
 import { ChannelUsersService } from '../../services/channel-users.service'
 import { loadChannelUserList } from '../../store/chats-users.actions'
-import { getChannelsUserWithoutCurrentUser } from '../../store/chats-users.selector'
-import { AddChannelUserDialogComponent } from '../add-channel-user-dialog/add-channel-user-dialog.component'
+import { getChannelsParticipantsWithoutUser } from '../../store/chats-users.selector'
+import { AddUserToChannelDialogComponent } from '../add-user-to-channel-dialog/add-user-to-channel-dialog.component'
 
 @Component({
-    selector: 'app-channel-user-list',
+    selector: 'app-channel-participants',
     standalone: true,
     imports: [
         AsyncPipe,
         NgTemplateOutlet,
         MatButton
     ],
-    templateUrl: './channel-user-list.component.html',
-    styleUrl: './channel-user-list.component.scss',
+    templateUrl: './channel-participants.component.html',
+    styleUrl: './channel-participants.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ChannelUserListComponent {
-    private addUserDialog: MatDialogRef<AddChannelUserDialogComponent> | null = null
+export class ChannelParticipantsComponent {
+    private addUserDialog: MatDialogRef<AddUserToChannelDialogComponent> | null = null
     selectedChannelId$: Observable<string | undefined> = this.store.select(getSelectedChannel)
     channelUsers$: Observable<UserData[]> = this.selectedChannelId$
         .pipe(
@@ -37,12 +37,12 @@ export class ChannelUserListComponent {
                 }
             }),
             switchMap((channelId?: string) =>
-                channelId ? this.store.select(getChannelsUserWithoutCurrentUser(channelId)) : of([])
+                channelId ? this.store.select(getChannelsParticipantsWithoutUser(channelId)) : of([])
             )
         )
 
     constructor(
-        private store: Store<{ chat: ChatState, chatsUsers: ChatsUsersData, user: UserData }>,
+        private store: Store<{ chat: ChatState, channelParticipants: ChannelParticipantData, user: UserData }>,
         private dialog: MatDialog,
         private channelUsersService: ChannelUsersService,
         private destroyRef: DestroyRef
@@ -54,7 +54,7 @@ export class ChannelUserListComponent {
             return
         }
 
-        this.addUserDialog = this.dialog.open(AddChannelUserDialogComponent)
+        this.addUserDialog = this.dialog.open(AddUserToChannelDialogComponent)
         this.addUserDialog.afterClosed()
             .pipe(
                 tap(() => this.addUserDialog = null),
