@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store'
 import { exhaustMap, map, switchMap } from 'rxjs'
 import { AuthState } from '../../auth/models/login.model'
 import { UserData } from '../../user/models/user.model'
-import { saveUserDataById, saveUsersData } from '../../user/store/user.actions'
+import { saveUsersData } from '../../user/store/user.actions'
 import { ChatsUsersApiService } from '../services/chats-users-api.service'
 import { addUserToChannel, loadChannelUserList, updateChannelUserList } from './chats-users.actions'
 

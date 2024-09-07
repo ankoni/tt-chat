@@ -5,7 +5,6 @@ import { MatButton } from '@angular/material/button'
 import { MatFormField, MatLabel } from '@angular/material/form-field'
 import { MatInput } from '@angular/material/input'
 import { Store } from '@ngrx/store'
-import { Observable } from 'rxjs'
 import { UserData, UserState } from '../../models/user.model'
 import { getCurrentUser } from '../../store/user.selectors'
 

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, HostListener, OnInit } from '@angular/core'
 import { RouterOutlet } from '@angular/router'
 import { AppService } from './core/services/app.service'
+import { UserDataService } from './modules/user/services/user-data.service'
 
 @Component({
     selector: 'app-root',
@@ -11,8 +12,13 @@ import { AppService } from './core/services/app.service'
 })
 export class AppComponent implements OnInit {
     constructor(
-        private appService: AppService
+        private appService: AppService,
+        private userDataService: UserDataService,
     ) {
+    }
+    @HostListener('window:beforeunload', ['$event'])
+    onBeforeUnload() {
+        this.userDataService.setUserOffline()
     }
 
     ngOnInit(): void {

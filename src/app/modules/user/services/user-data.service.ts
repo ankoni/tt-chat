@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core'
 import { Store } from '@ngrx/store'
-import { Observable, of, switchMap, tap } from 'rxjs'
+import { Observable, tap } from 'rxjs'
 import { UserData, UserState } from '../models/user.model'
-import { loadUserDataById, updateOnlineAndLoadUserAction } from '../store/user.actions'
+import { loadUserDataById, updateOnlineAction, updateOnlineAndLoadUserAction } from '../store/user.actions'
 import { getUserInfoById } from '../store/user.selectors'
 
 @Injectable({
@@ -28,5 +28,9 @@ export class UserDataService {
                    }
                 }),
             )
+    }
+
+    setUserOffline(): void {
+        this.store.dispatch(updateOnlineAction({ isOnline: false }))
     }
 }

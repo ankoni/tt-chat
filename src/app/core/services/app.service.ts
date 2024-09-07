@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { Store } from '@ngrx/store'
-import { AuthState, TokenData } from '../../modules/auth/models/login.model'
+import { TokenData } from '../../modules/auth/models/login.model'
 import { authSuccess } from '../../modules/auth/store/auth.actions'
 import { updateOnlineAndLoadUserAction } from '../../modules/user/store/user.actions'
 import { LocalStorageKeyItem, LocalStorageService } from './local-storage.service'
