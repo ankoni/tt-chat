@@ -1,6 +1,15 @@
+:host {
+    flex: 1 0 30%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
 .users {
     &_title {
         font-weight: 700;
+    }
+    &_list {
+        overflow: auto;
     }
     &_add-btn {
         display: flex;
