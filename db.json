@@ -3,90 +3,69 @@
     {
       "id": "a0fbe85b-2716-41f6-b2ca-4918926ce36e",
       "username": "Evangelin",
-      "email": "Evangelin@mail.ru",
-      "password": "2=fU",
+      "password": "1234",
       "is_online": true
     },
     {
       "id": "d7c8b657-17cd-4026-9ea7-d729c96c3b41",
       "username": "Kori",
-      "email": "Kori@mail.ru",
-      "password": "$2a$10$oLjQ7V8ZlZU1V3NHY69AlOwwUPtjxogUvjNYWH3854MsFIXPh3y9.",
-      "is_online": true
+      "password": "1234",
+      "is_online": false
     },
     {
       "id": "181de00a-a833-4fc5-ac7a-bf9b0a204b44",
       "username": "Allan",
       "email": "Allan@mail.ru",
-      "password": "4MfBV",
+      "password": "1111",
       "is_online": false
     },
     {
       "id": "0f4c3beb-f82e-4715-8681-00851c3cef70",
       "username": "Hanan",
-      "email": "Hanan@mail.ru",
-      "password": "2N%W",
-      "is_online": false
+      "password": "4321",
+      "is_online": true
     },
     {
       "id": "46748a1c-e6b4-4c40-8bcc-1f75d6ba1d2c",
       "username": "Rem",
-      "email": "Rem@mail.ru",
-      "password": "3uOCA",
+      "password": "1111",
       "is_online": false
     },
     {
       "id": "837d40a8-4106-4009-928f-1dee8d5d003c",
       "username": "Halsey",
-      "email": "Halsey@mail.ru",
-      "password": "3@L,R~T",
+      "password": "1111",
       "is_online": true
     },
     {
       "id": "18256b7c-8ac4-41fd-9fcb-4ed662fc4cff",
       "username": "Cleon",
-      "email": "Cleon@mail.ru",
-      "password": "3TDt",
+      "password": "1111",
       "is_online": false
     },
     {
       "id": "3f84f142-8693-4d17-9389-24bfc9d9afad",
       "username": "Meg",
-      "email": "Meg@mail.ru",
-      "password": "2aA8sJHt",
+      "password": "1111",
       "is_online": true
     },
     {
       "id": "50e3a917-5ea2-4151-a37b-d8156b372f83",
       "username": "Zitella",
-      "email": "Zitella@mail.ru",
-      "password": "3lio",
+      "password": "1111",
       "is_online": true
     },
     {
       "id": "eSVtxN-",
-      "email": "test@mail.ru",
       "username": "test",
-      "password": "$2a$10$oLjQ7V8ZlZU1V3NHY69AlOwwUPtjxogUvjNYWH3854MsFIXPh3y9.",
-      "is_online": true
+      "password": "1111",
+      "is_online": false
     }
   ],
   "channels": [
     {
-      "id": "1",
-      "name": "testtt"
-    },
-    {
       "name": "hello",
       "id": "XHqsqJ-"
-    },
-    {
-      "id": "wz1Kyjl",
-      "name": "channel test"
-    },
-    {
-      "name": "hi",
-      "id": "s_8duP8"
     }
   ],
   "messages": [
@@ -113,18 +92,6 @@
       "from_user": "eSVtxN-",
       "content": "4444",
       "id": 4
-    },
-    {
-      "channel_id": "wz1Kyjl",
-      "from_user": "eSVtxN-",
-      "content": "2222",
-      "id": 5
-    },
-    {
-      "channel_id": "XHqsqJ-",
-      "from_user": "d7c8b657-17cd-4026-9ea7-d729c96c3b41",
-      "content": "hi",
-      "id": 6
     }
   ],
   "user_channels": [
@@ -132,25 +99,6 @@
       "user_id": "eSVtxN-",
       "channel_id": "XHqsqJ-",
       "id": 1
-    },
-    {
-      "channel_id": "wz1Kyjl",
-      "user_id": "eSVtxN-",
-      "id": 2
-    },
-    {
-      "channel_id": [
-        "wz1Kyjl"
-      ],
-      "user_id": "a0fbe85b-2716-41f6-b2ca-4918926ce36e",
-      "id": 3
-    },
-    {
-      "channel_id": [
-        "wz1Kyjl"
-      ],
-      "user_id": "d7c8b657-17cd-4026-9ea7-d729c96c3b41",
-      "id": 4
     },
     {
       "channel_id": [
@@ -168,13 +116,6 @@
     },
     {
       "channel_id": [
-        "wz1Kyjl"
-      ],
-      "user_id": "837d40a8-4106-4009-928f-1dee8d5d003c",
-      "id": 7
-    },
-    {
-      "channel_id": [
         "XHqsqJ-"
       ],
       "user_id": "a0fbe85b-2716-41f6-b2ca-4918926ce36e",
@@ -186,11 +127,6 @@
       ],
       "user_id": "0f4c3beb-f82e-4715-8681-00851c3cef70",
       "id": 9
-    },
-    {
-      "channel_id": "s_8duP8",
-      "user_id": "eSVtxN-",
-      "id": 10
     }
   ]
 }
