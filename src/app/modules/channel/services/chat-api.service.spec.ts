@@ -1,16 +1,23 @@
-import { TestBed } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http'
+import { provideHttpClientTesting } from '@angular/common/http/testing'
+import { TestBed } from '@angular/core/testing'
 
-import { ChannelApiService } from './channel-api.service';
+import { ChannelApiService } from './channel-api.service'
 
 describe('ChatApiService', () => {
-  let service: ChannelApiService;
+    let service: ChannelApiService
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(ChannelApiService);
-  });
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            providers: [
+                provideHttpClient(),
+                provideHttpClientTesting()
+            ]
+        })
+        service = TestBed.inject(ChannelApiService)
+    })
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-});
+    it('should be created', () => {
+        expect(service).toBeTruthy()
+    })
+})

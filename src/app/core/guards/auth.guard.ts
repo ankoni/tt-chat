@@ -1,14 +1,5 @@
 import { inject } from '@angular/core'
-import {
-    ActivatedRouteSnapshot,
-    CanActivate,
-    CanActivateFn,
-    CanMatchFn,
-    RedirectCommand,
-    Route,
-    Router, RouterStateSnapshot,
-    UrlSegment
-} from '@angular/router'
+import { ActivatedRouteSnapshot, CanActivateFn, RedirectCommand, Router, RouterStateSnapshot } from '@angular/router'
 import { Store } from '@ngrx/store'
 import { map, take } from 'rxjs'
 import { authTokenSelector } from '../../modules/auth/store/auth.selectors'

@@ -25,8 +25,8 @@ import { UserData, UserState } from '../../models/user.model'
 })
 export class UserInfoComponent implements OnInit {
     formGroup: FormGroup = new FormGroup({
-        username: new FormControl(''),
-        password: new FormControl(null),
+        username: new FormControl({ value: null, disabled: true }),
+        password: new FormControl({ value: null, disabled: true }),
     })
 
 

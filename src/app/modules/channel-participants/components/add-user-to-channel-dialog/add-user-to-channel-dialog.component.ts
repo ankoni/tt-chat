@@ -32,7 +32,7 @@ import { ChannelUsersService } from '../../services/channel-users.service'
 })
 export class AddUserToChannelDialogComponent {
     userControl: FormControl<string[] | null> = new FormControl(null, Validators.required)
-    users$ = new BehaviorSubject<UserData[]>([])
+    users$: BehaviorSubject<UserData[]> = new BehaviorSubject<UserData[]>([])
 
     constructor(
         private channelUserService: ChannelUsersService,
@@ -52,7 +52,6 @@ export class AddUserToChannelDialogComponent {
 
     addUsers(): void {
         const userIds: string[] | null = this.userControl.value
-        console.log(userIds)
         this.close(userIds)
     }
 }

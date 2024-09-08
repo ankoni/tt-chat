@@ -10,15 +10,15 @@ const LOCAL_STORAGE_KEY = 'ch-ls_'
 })
 export class LocalStorageService {
     setItem<T>(key: LocalStorageKeyItem, value: T): void {
-        window.localStorage.setItem(key, JSON.stringify(value))
+        window.localStorage.setItem(this.getKey(key), JSON.stringify(value))
     }
 
     getItem<T>(key: LocalStorageKeyItem): T | null {
-        const data: string | null = window.localStorage.getItem(key)
+        const data: string | null = window.localStorage.getItem(this.getKey(key))
         return data ? JSON.parse(data) : null
     }
 
-    clear(): void {
-        window.localStorage.clear()
+    private getKey(key: LocalStorageKeyItem): string {
+        return LOCAL_STORAGE_KEY + key
     }
 }

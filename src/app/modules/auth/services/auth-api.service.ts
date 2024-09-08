@@ -14,7 +14,7 @@ export class AuthApiService {
     ) {
     }
 
-    loginRequestNew({ username, password }: LoginFormData): Observable<TokenData> {
+    loginRequest({ username, password }: LoginFormData): Observable<TokenData> {
         return this.http.get<UserData[]>(`/api/users?username=${username}&password=${password}`)
             .pipe(
                 tap((info: UserData[]) => {

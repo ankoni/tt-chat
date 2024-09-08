@@ -6,7 +6,7 @@ import { MatError, MatFormField, MatLabel } from '@angular/material/form-field'
 import { MatInput } from '@angular/material/input'
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { Store } from '@ngrx/store'
-import { filter, Observable, withLatestFrom } from 'rxjs'
+import { filter, Observable, tap, withLatestFrom } from 'rxjs'
 import { AuthState, LoginFormData, LoginFormGroup } from '../../models/login.model'
 import { LoginService } from '../../services/login.service'
 import { authErrorSelector } from '../../store/auth.selectors'
@@ -29,6 +29,11 @@ import { authErrorSelector } from '../../store/auth.selectors'
 })
 export class LoginFormComponent {
     authError$: Observable<string | undefined> = this.authStore.select(authErrorSelector)
+        .pipe(tap((error: string | undefined) => {
+            if (error) {
+                this.form.setErrors({ authError: true })
+            }
+        }))
 
     form: FormGroup<LoginFormGroup> = new FormGroup<LoginFormGroup>(
         {

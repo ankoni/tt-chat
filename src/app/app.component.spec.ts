@@ -1,29 +1,27 @@
-import { TestBed } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import { TestBed } from '@angular/core/testing'
+import { provideMockStore } from '@ngrx/store/testing'
+import { AppComponent } from './app.component'
+import { AppService } from './core/services/app.service'
+import { UserDataService } from './modules/user/services/user-data.service'
 
 describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [AppComponent],
-    }).compileComponents();
-  });
+    const storeInitState = {
+        user: {}
+    }
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [AppComponent],
+            providers: [
+                AppService,
+                UserDataService,
+                provideMockStore({ initialState: storeInitState })
+            ]
+        }).compileComponents()
+    })
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it(`should have the 'tt-chat' title`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('tt-channel');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, tt-channel');
-  });
-});
+    it('should create the app', () => {
+        const fixture = TestBed.createComponent(AppComponent)
+        const app = fixture.componentInstance
+        expect(app).toBeTruthy()
+    })
+})

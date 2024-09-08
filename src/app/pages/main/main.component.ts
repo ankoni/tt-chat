@@ -34,7 +34,6 @@ import { UserDataService } from '../../modules/user/services/user-data.service'
 })
 export class MainComponent implements OnInit {
     constructor(
-        private store: Store<{ user: UserState }>,
         private userDataService: UserDataService,
         private loginService: LoginService
     ) {
